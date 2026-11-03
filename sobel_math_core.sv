@@ -6,7 +6,7 @@ module sobel_math_core#(
     output logic [7:0] sobel_data,
     output logic sobel_valid);
     
-    logic [10:0] gx_right,gx_left,gy_top,gy_bottom,gx,gy;
+    logic [10:0] gx_right,gx_left,gy_top,gy_bottom,gx,gy,abs_gx,abs_gy;
     logic valid_s1,valid_s2,border_s1,border_s2;
     logic [11:0] mag;
 
@@ -61,7 +61,9 @@ module sobel_math_core#(
         end
     end
     always_comb begin 
-        assign mag = ((gx[10])? -gx : gx )+ ((gy[10])? -gy : gy);
+        abs_gx = (gx[10]) ? -gx : gx;
+        abs_gy = (gy[10]) ? -gy : gy;
+        mag = {1'b0, abs_gx} + {1'b0, abs_gy};
     end
 
     always_ff @(posedge clk or negedge rst_n) begin
