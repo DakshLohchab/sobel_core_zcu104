@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module sobel_math_core#(
     parameter int threshold = 80
 )(

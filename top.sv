@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module top#(
     parameter int IMG_WIDTH = 128,
     parameter int IMG_HEIGHT = 128,
